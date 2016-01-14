@@ -114,7 +114,6 @@ class Model(object):
             name = TUI.Version.ApplicationName.lower(),
             connection = connection,
             includeName = False,
-            callKeyVarsOnDisconnect = True,
         )
         opscore.actor.model.Model.setDispatcher(self.dispatcher)
         
