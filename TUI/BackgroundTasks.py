@@ -62,15 +62,12 @@ class BackgroundKwds(object):
         self.maxEntryAge = float(maxEntryAge)
 
         self.tuiModel = TUI.Models.getModel("tui")
-        self.tccModel = TUI.Models.getModel("tcc")
         self.connection = self.tuiModel.getConnection()
         self.dispatcher = self.tuiModel.dispatcher
         self.didSetUTCMinusTAI = False
         self.checkConnTimer = opscore.utility.timer.Timer()
         self.clockType = None # set to "UTC" or "TAI" if keeping that time system
 
-        self.tccModel.utc_TAI.addCallback(self._utcMinusTAICallback, callNow=False)
-    
         self.connection.addStateCallback(self.connCallback, callNow=True)
 
     def connCallback(self, conn):
@@ -81,7 +78,6 @@ class BackgroundKwds(object):
         """
         if conn.isConnected:
             self.checkConnTimer.start(self.checkConnInterval, self.checkConnection)
-            self.checkClock()
         else:
             self.checkConnTimer.cancel()
     
