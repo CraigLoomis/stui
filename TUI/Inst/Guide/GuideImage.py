@@ -30,7 +30,10 @@ History:
 2015-11-05 ROwen    Modernized "except" syntax.
 """
 import os
-import pyfits
+try:
+    import astropy.io.fits as pyfits
+except:
+    import pyfits
 import RO.StringUtil
 import TUI.Models
 
